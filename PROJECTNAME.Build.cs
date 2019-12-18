@@ -1,21 +1,37 @@
-// Some copyright should be here...
+// This file should exist in directory `/Source/${PROJECTNAME}` 
 
-using UnrealBuildTool;
+// Fill out your copyright notice in the Description page of Project Settings.
+
 using System.IO;
+using UnrealBuildTool;
 
-public class OpenCV : ModuleRules
+public class ${PROJECTNAME} : ModuleRules
 {
     private string ThirdPartyPath
     {
-        get { return Path.GetFullPath(Path.Combine(ModuleDirectory, "../../../../ThirdParty/")); }
+        get { return Path.GetFullPath(Path.Combine(ModuleDirectory, "../../ThirdParty/")); }
     }
 
-    public OpenCV(ReadOnlyTargetRules Target) : base(Target)
-    {
-        // Startard Module Dependencies
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "RHI", "RenderCore" });
-        PrivateDependencyModuleNames.AddRange(new string[] { "CoreUObject", "Engine", "Slate", "SlateCore" });
+    public ${PROJECTNAME}(ReadOnlyTargetRules Target) : base(Target)
+	{
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+	
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "RHI", "RenderCore" });
+        LoadOpenCV(Target);
 
+		PrivateDependencyModuleNames.AddRange(new string[] {  });
+
+		// Uncomment if you are using Slate UI
+		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+		
+		// Uncomment if you are using online features
+		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
+
+		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+	}
+
+    public bool LoadOpenCV(ReadOnlyTargetRules Target)
+    {
         // Start OpenCV linking here!
         bool isLibrarySupported = false;
 
@@ -29,18 +45,6 @@ public class OpenCV : ModuleRules
         {
             LibPath = Path.Combine(OpenCVPath, "Libraries", "Win64");
             isLibrarySupported = true;
-        }
-        else if (Target.Platform == UnrealTargetPlatform.Win32)
-        {
-            // TODO: add OpenCV binaries for Win32
-        }
-        else if (Target.Platform == UnrealTargetPlatform.Mac)
-        {
-            // TODO: add OpenCV binaries for Mac
-        }
-        else if (Target.Platform == UnrealTargetPlatform.Linux)
-        {
-            // TODO: add OpenCV binaries for Linux
         }
         else
         {
@@ -61,9 +65,11 @@ public class OpenCV : ModuleRules
             //Add Dynamic Libraries
             PublicDelayLoadDLLs.Add("opencv_world320.dll");
             PublicDelayLoadDLLs.Add("opencv_ffmpeg320_64.dll");
-
         }
 
         PublicDefinitions.Add(string.Format("WITH_OPENCV_BINDING={0}", isLibrarySupported ? 1 : 0));
+
+        return isLibrarySupported;
     }
+
 }
