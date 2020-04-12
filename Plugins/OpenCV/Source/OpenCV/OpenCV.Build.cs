@@ -53,10 +53,11 @@ public class OpenCV : ModuleRules
             PublicIncludePaths.AddRange(new string[] { Path.Combine(OpenCVPath, "Includes") });
 
             // Add Library Path 
-            PublicLibraryPaths.Add(LibPath);
+            // PublicLibraryPaths.Add(LibPath);
 
             //Add Static Libraries
-            PublicAdditionalLibraries.Add("opencv_world320.lib");
+            // PublicAdditionalLibraries.Add("opencv_world320.lib");
+            PublicAdditionalLibraries.Add(Path.Combine(LibPath, "opencv_world320.lib"));
 
             //Add Dynamic Libraries
             PublicDelayLoadDLLs.Add("opencv_world320.dll");
