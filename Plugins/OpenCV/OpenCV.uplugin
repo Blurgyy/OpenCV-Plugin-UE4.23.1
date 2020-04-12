@@ -13,7 +13,7 @@
 	"Modules": [
 		{
 			"Name": "OpenCV",
-			"Type": "Developer",
+			"Type": "DeveloperTool",
 			"LoadingPhase": "Default"
 		}
 	],
