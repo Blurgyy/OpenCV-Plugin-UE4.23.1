@@ -60,8 +60,8 @@ public class OpenCV : ModuleRules
             PublicAdditionalLibraries.Add(Path.Combine(LibPath, "opencv_world320.lib"));
 
             //Add Dynamic Libraries
-            PublicDelayLoadDLLs.Add("opencv_world320.dll");
-            PublicDelayLoadDLLs.Add("opencv_ffmpeg320_64.dll");
+            PublicDelayLoadDLLs.Add(Path.Combine(LibPath, "opencv_world320.dll"));
+            PublicDelayLoadDLLs.Add(Path.Combine(LibPath, "opencv_ffmpeg320_64.dll"));
 
         }
 
