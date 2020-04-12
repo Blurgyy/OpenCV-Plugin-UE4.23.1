@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
  
+#include "WebcamReader.h"
 #include "OpenCVPrivatePCH.h"
 #include "OpenCV.h"
-#include "WebcamReader.h"
  
 // Sets default values
 AWebcamReader::AWebcamReader()
